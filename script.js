@@ -63,3 +63,29 @@ const activeObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 sections.forEach(s => activeObserver.observe(s));
+
+// ── CONTACT FORM — FIXED 
+const form = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+
+form?.addEventListener('submit', (e) => {
+  const name    = document.getElementById('name').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  // Only prevent & show error if fields are empty
+  if (!name || !email || !message) {
+    e.preventDefault();
+    submitBtn.textContent = '⚠️ Please fill all required fields';
+    submitBtn.style.background = '#f59e0b';
+    setTimeout(() => {
+      submitBtn.textContent = 'Send Message 🚀';
+      submitBtn.style.background = '';
+    }, 2500);
+    return;
+  }
+
+  // Let Formspree handle the real submission
+  submitBtn.textContent = 'Sending... ⏳';
+  submitBtn.disabled = true;
+});
