@@ -409,22 +409,24 @@ h1 span {
   transform: translateY(-2px);
 }
 
-/* ── AVATAR*/
+/* ── AVATAR & CHIPS ─*/
 .hero-visual {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 420px;
+  height: 480px;
 }
 
 .avatar-ring {
-  width: 240px; height: 240px;
+  width: 200px; height: 200px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   padding: 4px;
   box-shadow: 0 20px 60px rgba(108,99,255,0.3);
   animation: ringPulse 4s ease-in-out infinite;
+  z-index: 2;
+  flex-shrink: 0;
 }
 
 @keyframes ringPulse {
@@ -440,36 +442,103 @@ h1 span {
   align-items: center;
   justify-content: center;
   font-family: var(--font);
-  font-size: 52px;
+  font-size: 44px;
   font-weight: 800;
   color: var(--primary);
   letter-spacing: -0.02em;
 }
 
+/* ── BASE CHIP STYLE  */
 .floating-chip {
   position: absolute;
   background: #fff;
   border: 1.5px solid var(--border);
   border-radius: 100px;
-  padding: 8px 16px;
-  font-size: 13px;
+  padding: 7px 14px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text);
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   white-space: nowrap;
+  z-index: 3;
 }
 
-.chip-1 { top: 40px;    right: 20px;  animation: chipFloat 4s   ease-in-out infinite; }
-.chip-2 { bottom: 80px; right: 0px;   animation: chipFloat 5s   ease-in-out infinite 0.5s; }
-.chip-3 { top: 120px;   left: 0px;    animation: chipFloat 4.5s ease-in-out infinite 1s; }
-.chip-4 { bottom: 40px; left: 20px;   animation: chipFloat 6s   ease-in-out infinite 1.5s; }
+/*
+  9 chips arranged in a clock-like circle:
+  chip-1  → 12 o'clock (top center)
+  chip-2  → 2 o'clock  (top right)
+  chip-3  → 4 o'clock  (right)
+  chip-4  → 5 o'clock  (bottom right)
+  chip-6  → 6 o'clock  (bottom center)
+  chip-10 → 8 o'clock  (bottom left)
+  chip-11 → 10 o'clock (left)
+  chip-14 → 11 o'clock (top left)
+  chip-15 → 1 o'clock  (top right)
+*/
+
+.chip-1  {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: chipFloat 4s ease-in-out infinite 0s;
+}
+.chip-2  {
+  top: 60px;
+  right: 20px;
+  animation: chipFloat 4.5s ease-in-out infinite 0.3s;
+}
+.chip-3  {
+  top: 170px;
+  right: 0px;
+  animation: chipFloat 5s ease-in-out infinite 0.6s;
+}
+.chip-4  {
+  bottom: 150px;
+  right: 15px;
+  animation: chipFloat 4.2s ease-in-out infinite 0.9s;
+}
+.chip-6  {
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: chipFloat 4.8s ease-in-out infinite 1.2s;
+}
+.chip-10 {
+  bottom: 150px;
+  left: 15px;
+  animation: chipFloat 5.2s ease-in-out infinite 1.5s;
+}
+.chip-11 {
+  top: 170px;
+  left: 0px;
+  animation: chipFloat 4.6s ease-in-out infinite 1.8s;
+}
+.chip-14 {
+  top: 60px;
+  left: 20px;
+  animation: chipFloat 4.3s ease-in-out infinite 2.1s;
+}
+.chip-15 {
+  bottom: 270px;
+  right: 30px;
+  animation: chipFloat 5.1s ease-in-out infinite 2.4s;
+}
 
 @keyframes chipFloat {
   0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
+  50%      { transform: translateY(-8px); }
 }
 
-/* SCROLL HINT */
+/* Fix chips with translateX so float doesn't break them */
+.chip-1 { animation: chipFloatCenter 4s ease-in-out infinite 0s; }
+.chip-6 { animation: chipFloatCenter 4.8s ease-in-out infinite 1.2s; }
+
+@keyframes chipFloatCenter {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-8px); }
+}
+
+/* ── SCROLL HINT ─ */
 .scroll-hint {
   position: absolute;
   bottom: 36px; left: 50%;
@@ -491,10 +560,50 @@ h1 span {
 }
 
 @keyframes scrollLine {
-  0%   { opacity: 1; transform: scaleY(1);   transform-origin: top; }
+  0%   { opacity: 1; transform: scaleY(1);  transform-origin: top; }
   100% { opacity: 0; transform: scaleY(0); transform-origin: top; }
 }
-/* ── ABOUT ────────────────────────────────── */
+
+/* ── RESPONSIVE HERO  */
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    padding: 60px 24px;
+    gap: 48px;
+  }
+
+  .hero-visual {
+    height: 380px;
+  }
+
+  .avatar-ring {
+    width: 160px;
+    height: 160px;
+  }
+
+  .avatar-inner {
+    font-size: 34px;
+  }
+
+  /* Hide outer chips on mobile */
+  .chip-3, .chip-4,
+  .chip-10, .chip-11,
+  .chip-15 {
+    display: none;
+  }
+
+  .chip-1  { top: 10px; }
+  .chip-2  { top: 40px; right: 10px; }
+  .chip-6  { bottom: 40px; }
+  .chip-14 { top: 40px; left: 10px; }
+}
+
+@media (max-width: 540px) {
+  .chip-2, .chip-14 { display: none; }
+
+  .hero-visual { height: 300px; }
+}
+/* ── ABOUT */
 #about {
   background: var(--bg-soft);
 }
