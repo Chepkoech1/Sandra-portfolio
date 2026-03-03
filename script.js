@@ -30,3 +30,17 @@ document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-car
   el.dataset.delay = i * 80;
 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── SKILL BAR ANIMATION 
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+        setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+      });
+      skillObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+const skillsSection = document.getElementById('skills');
+if (skillsSection) skillObserver.observe(skillsSection);
