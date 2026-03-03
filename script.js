@@ -89,3 +89,13 @@ form?.addEventListener('submit', (e) => {
   submitBtn.textContent = 'Sending... ⏳';
   submitBtn.disabled = true;
 });
+// ── SMOOTH ANCHOR SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+    }
+  });
+});
