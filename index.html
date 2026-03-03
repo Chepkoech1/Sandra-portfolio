@@ -277,18 +277,33 @@
     </div>
   </section>
   <!-- EDUCATION -->
-   <!-- EDUCATION -->
+ 
   <section id="education">
     <div class="container">
       <div class="section-label reveal">04 — Education</div>
       <h2 class="section-title reveal">My Learning Journey</h2>
       <div class="edu-timeline">
+        <div class="edu-card reveal">
+          <div class="edu-dot"></div>
+          <div class="edu-content">
+            <div class="edu-year">2024 – To-date</div>
+            <h3>Bachelor of Science in Information Technology</h3>
+            <div class="edu-school">🏫 Zetech University, Nairobi</div>
+            <p>Studied core IT fundamentals including networking, databases, software engineering, and web development. Built a strong academic foundation for a career in tech.</p>
+            <div class="edu-tags">
+              <span>Databases</span>
+              <span>Networking</span>
+              <span>Software Engineering</span>
+              <span>Web Dev</span>
+            </div>
+          </div>
+        </div>
 
         <div class="edu-card reveal">
           <div class="edu-dot"></div>
           <div class="edu-content">
-            <div class="edu-year">2021 – 2023</div>
-            <h3>Bachelor of Science in Information Technology</h3>
+            <div class="edu-year">2021 – 2024</div>
+            <h3>Diploma in Information Technology</h3>
             <div class="edu-school">🏫 Zetech University, Nairobi</div>
             <p>Studied core IT fundamentals including networking, databases, software engineering, and web development. Built a strong academic foundation for a career in tech.</p>
             <div class="edu-tags">
@@ -315,6 +330,89 @@
             </div>
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT -->
+   <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label reveal">05 — Contact</div>
+      <h2 class="section-title reveal">Let's Work Together</h2>
+      <p class="section-sub reveal">Have a project in mind or just want to say hi? My inbox is always open.</p>
+      <div class="contact-grid">
+
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <a href="mailto:sandrangeno229@gmail.com">sandrangeno229@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Location</div>
+              <span>Nairobi, Kenya</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🐙</div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <a href="https://github.com/Chepkoech1" target="_blank">github.com/Chepkoech1</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <a href="https://linkedin.com/in/your-username" target="_blank">linkedin.com/in/your-username</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form"
+              action="https://formspree.io/f/mqedvvqq"
+              method="POST">
+
+          <!-- Formspree hidden fields -->
+          <input type="hidden" name="_subject" value="📩 New message from your Portfolio!" />
+          <input type="hidden" name="_replyto" value="sandrangeno229@gmail.com" />
+          <input type="text" name="_gotcha" style="display:none" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name"
+                     placeholder="Jane Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email"
+                     placeholder="jane@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject"
+                   placeholder="Let's collaborate!" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5"
+                      placeholder="Tell me about your project..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+            Send Message 🚀
+          </button>
+
+        </form>
 
       </div>
     </div>
