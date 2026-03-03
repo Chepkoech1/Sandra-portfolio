@@ -14,3 +14,19 @@ hamburger.addEventListener('click', () => {
 mobileMenu.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => mobileMenu.classList.remove('open'));
 });
+
+// ── SCROLL REVEAL 
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), entry.target.dataset.delay || 0);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card, .about-cards .info-card').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.dataset.delay = i * 80;
+});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
