@@ -44,3 +44,22 @@ const skillObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 const skillsSection = document.getElementById('skills');
 if (skillsSection) skillObserver.observe(skillsSection);
+
+// ── SCROLL TO TOP 
+document.getElementById('scroll-top').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── ACTIVE NAV LINK ON SCROLL 
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const activeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => { link.style.color = ''; });
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if (active) active.style.color = 'var(--primary)';
+    }
+  });
+}, { threshold: 0.5 });
+sections.forEach(s => activeObserver.observe(s));
